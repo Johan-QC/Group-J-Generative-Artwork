@@ -9,6 +9,7 @@ namespace {
     const float R_NET = 345;      // radio del círculo que contiene la red
     const float FRAME_H = 360;      // semilado del primer marco rectangular
     bool saveRequested = false;
+    bool saveSvgRequested = false;
 
     // --- Loto central: rosa polar r = R*cos(8*a) -> 16 pétalos -----------------
     void drawLotus(float R, float angleOffset) {
@@ -128,6 +129,12 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
     ofBackground(255);
+
+
+    if (saveSvgRequested) {
+        ofBeginSaveScreenAsSVG("pratityasamutpada.svg");
+    }
+
     ofSetColor(0);
     ofNoFill();
 
@@ -150,15 +157,21 @@ void ofApp::draw() {
     hatchCorner(1, -1);
     hatchCorner(-1, -1);
 
+    if (saveSvgRequested) {
+        ofEndSaveScreenAsSVG();
+        saveSvgRequested = false;
+        ofLog() << "SVG guardado: pratityasamutpada.svg";
+    }
+
     if (saveRequested) {
         ofSaveScreen("pratityasamutpada.png");
         saveRequested = false;
     }
 }
 
-//--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
     if (key == 's') saveRequested = true;
+    if (key == 'v') saveSvgRequested = true;
 }
 
 //--------------------------------------------------------------
