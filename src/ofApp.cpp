@@ -6,7 +6,7 @@ namespace {
     const float CX = W / 2;
     const float CY = W / 2;
 
-    const float R_NET = 345;      // radio del círculo que contiene la red
+    const float R_NET = 345;      // radio del círculo que contiene la red!!
     const float FRAME_H = 360;      // semilado del primer marco rectangular
     bool saveRequested = false;
     bool saveSvgRequested = false;
